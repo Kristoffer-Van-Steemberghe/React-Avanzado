@@ -6,8 +6,19 @@ Este proyecto como su nombre lo dice utiliza tecnologías de React, como:
 - MondoDB
 - GraphQL
 
-Este proyecto corresponde al curso de [React Avanzado: Fullstack Next.js, Apollo, MongoDB y GraphQL](https://www.udemy.com/course/fullstack-react-graphql-y-apollo-de-principiante-a-experto/), el cual imparte el profesor [Juan Pablo De la torre Valdez](https://codigoconjuan.com/).
 
-## Contenido.
+## Sobre el proyecto.
+--- 
+El proyecto esta realizado por los siguientes integrantes del equipo:
+- Roberto Baeza Guerrero, que empleará los roles de sublíder, documentador y cohesionador.
+- Kristoffer Van Steemberghe Luján, quien será líder del proyecto, programador y analista.
+
+Los 3 posibles cliente para este **sistema** son:
+- Camelia Baeza Reyes, quién se dedica al comercio de compra-venta de zapatos.
+- [Estética Unisex Adris](https://g.co/kgs/RkZa8g), un pequeño salon de belleza.
+- [Barrilín y Chelinski](https://goo.gl/maps/NePJ8AMSewQzyxc39), un negocio de comida y bebidas.
+
+
+### Contenido.
 ---
 En este repositorio encontraras el proyecto finalizado, así como algunas notas tomadas del curso.
