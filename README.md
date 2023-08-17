@@ -13,7 +13,7 @@ El proyecto esta realizado por los siguientes integrantes del equipo:
 - Roberto Baeza Guerrero, sublíder, documentador y cohesionador.
 - Kristoffer Van Steemberghe Luján, líder del proyecto, programador y analista.
 
-Los 3 posibles cliente para este **sistema** son:
+Los 3 posibles cliente para este **sistema de Información Computarizado** son:
 - Camelia Baeza Reyes, quién se dedica al comercio de compra-venta de zapatos.
 - [Estética Unisex Adris](https://g.co/kgs/RkZa8g), un pequeño salon de belleza.
 - [Barrilín y Chelinski](https://goo.gl/maps/NePJ8AMSewQzyxc39), un negocio de comida y bebidas.
