@@ -6,4 +6,5 @@
 ---
 
 ## Front-end:
-1. [Sweetalert2](https://sweetalert2.github.io/).
+1. [Heroicons](https://heroicons.com/).
+2. [Sweetalert2](https://sweetalert2.github.io/).
