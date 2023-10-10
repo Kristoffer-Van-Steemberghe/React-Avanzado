@@ -1,50 +1,46 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { gql, useMutation } from "@apollo/client";
-import Router from "next/router";
 
-const ELIMINAR_CLIENTE = gql`
-    mutation eliminarCliente($id: ID!) {
-        eliminarCliente(id:$id)
+const ELIMINAR_PRODUCTO = gql`
+    mutation eliminarProducto($id: ID!) {
+        eliminarProducto(id: $id)
     }
 `;
 
-const OBTENER_CLIENTES_USUARIO = gql`
-  query obtenerClientesVendedor {
-    obtenerClientesVendedor {
+const OBTENER_PRODUCTOS = gql`
+  query obtenerProductos {
+    obtenerProductos {
       id
       nombre
-      apellido
-      empresa
-      email
+      precio
+      existencia
     }
   }
 `;
 
-const Cliente = ({cliente}) => {
+const Producto = ({ producto, carrito, agregarProducto, productos }) => {
+    const { nombre, precio, existencia, id } = producto;
 
-    // Mutation para eliminar cliente
-    const [ eliminarCliente ] = useMutation(ELIMINAR_CLIENTE, {
+    // Mutation para eliminar producto
+    const [ eliminarProducto ] = useMutation(ELIMINAR_PRODUCTO, {
         update(cache) {
             // Obtener una copia del objeto de cache
-            const { obtenerClientesVendedor } = cache.readQuery({ query: OBTENER_CLIENTES_USUARIO });
+            const { obtenerProductos } = cache.readQuery({ query: OBTENER_PRODUCTOS });
 
             // Reescribir el cache
             cache.writeQuery({
-                query: OBTENER_CLIENTES_USUARIO,
+                query: OBTENER_PRODUCTOS,
                 data: {
-                    obtenerClientesVendedor: obtenerClientesVendedor.filter( clienteActual => clienteActual.id !== id )
+                    obtenerProductos: obtenerProductos.filter( productoActual => productoActual.id !== id )
                 }
             })
         }
     });
-
-    const { nombre, apellido, empresa, email, id } = cliente;
-
-    // Eliminar cliente
-    const confirmarEliminarCliente = () => {
+    
+    const confirmarEliminarProducto = () => {
         Swal.fire({
-            title: '¿Deseas eliminar a este cliente?',
+            title: '¿Deseas eliminar a este producto?',
             text: "Esta acción no se puede deshacer",
             icon: 'warning',
             showCancelButton: true,
@@ -55,45 +51,39 @@ const Cliente = ({cliente}) => {
           }).then( async (result) => {
             if (result.isConfirmed) {
 
-                
                 try {
-                    // Eliminar por ID
-                    const { data } = await eliminarCliente({
+                    // Eliminar producto de la base de datos
+                    const { data } = await eliminarProducto({
                         variables: {
                             id
                         }
                     });
+
                     // console.log(data);
-                    
+
+                    // Mostrar una alerta
                     Swal.fire(
                         '¡Eliminado!',
-                        'El cliente ha sido eliminado.',
+                        data.eliminarProducto,
                         'success'
                     )
                 } catch (error) {
-                    console.log(error);    
-                }
+                    console.log(error);
+                }                
             }
           })
     }
-
-    const editarCliente = () => {
-        Router.push({
-            pathname: "/editarcliente/[id]",
-            query: { id }
-        })
-    }
-
+    
     return (
         <tr>
-            <td className="border px-4 py-2">{nombre} {apellido}</td>
-            <td className="border px-4 py-2">{empresa}</td>
-            <td className="border px-4 py-2">{email}</td>
+            <td className="border px-4 py-2">{nombre}</td>
+            <td className="border px-4 py-2">{existencia} Unidades</td>
+            <td className="border px-4 py-2">${precio} MXN</td>
             <td className="border px-4 py-2">
                 <button
                     type="button"
                     className="flex justify-center items-center bg-red-800 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
-                    onClick={() => confirmarEliminarCliente()}
+                    onClick={() => confirmarEliminarProducto()}
                 >
                     Eliminar
 
@@ -107,7 +97,7 @@ const Cliente = ({cliente}) => {
                 <button
                     type="button"
                     className="flex justify-center items-center bg-yellow-500 py-2 px-4 w-full text-white rounded text-xs uppercase font-bold"
-                    onClick={() => editarCliente()}
+                    // onClick={() => editarCliente()}
                 >
                     Editar
 
@@ -121,4 +111,4 @@ const Cliente = ({cliente}) => {
     );
 }
 
-export default Cliente;
+export default Producto;
