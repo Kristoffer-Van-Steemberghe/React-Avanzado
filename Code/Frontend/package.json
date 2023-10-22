@@ -17,6 +17,8 @@
     "node-fetch": "^3.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-select": "^5.7.7",
+    "recharts": "^2.9.0",
     "sweetalert2": "^11.7.27",
     "yup": "^1.2.0"
   },
